@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primor Garçons - Identidade Visual Preview</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700&family=Playfair+Display:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        display: ['Playfair Display', 'serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="min-h-full bg-gradient-to-b from-gray-900 to-gray-950">
+    
+    <!-- Header -->
+    <header class="border-b border-white/10 bg-gray-900/50 backdrop-blur-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-amber-300 to-amber-500 rounded-lg flex items-center justify-center">
+                    <span class="font-display font-bold text-gray-900 text-xl">P</span>
+                </div>
+                <div>
+                    <h1 class="font-display text-xl text-white">Primor</h1>
+                    <span class="text-xs text-gray-400 tracking-[0.2em] uppercase">Garçons</span>
+                </div>
+            </div>
+            <span class="text-sm text-gray-400">Identidade Visual - Preview</span>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-6 py-12 space-y-16">
+        
+        <!-- Seção: Paleta de Cores -->
+        <section>
+            <h2 class="font-heading text-2xl font-semibold text-white mb-8 flex items-center gap-3">
+                <span class="text-amber-400">🎨</span> Paleta de Cores
+            </h2>
+            
+            <!-- Cores de Fundo -->
+            <div class="mb-10">
+                <h3 class="text-lg font-medium text-gray-100 mb-4">Cores de Fundo (Degradê)</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="rounded-xl overflow-hidden border border-white/10">
+                        <div class="h-24 bg-gray-950"></div>
+                        <div class="bg-gray-800/50 p-4">
+                            <p class="font-medium text-white">Preto Base</p>
+                            <p class="text-sm text-gray-400 font-mono">#030712 (gray-950)</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl overflow-hidden border border-white/10">
+                        <div class="h-24 bg-gray-900"></div>
+                        <div class="bg-gray-800/50 p-4">
+                            <p class="font-medium text-white">Cinza Escuro</p>
+                            <p class="text-sm text-gray-400 font-mono">#111827 (gray-900)</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl overflow-hidden border border-white/10">
+                        <div class="h-24 bg-gray-800"></div>
+                        <div class="bg-gray-800/50 p-4">
+                            <p class="font-medium text-white">Cinza Médio</p>
+                            <p class="text-sm text-gray-400 font-mono">#1F2937 (gray-800)</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Degradê Preview -->
+                <div class="mt-6 rounded-xl overflow-hidden border border-white/10">
+                    <div class="h-32 bg-gradient-to-b from-gray-900 to-gray-950 flex items-center justify-center">
+                        <span class="text-white/60 text-sm">Degradê Principal: from-gray-900 to-gray-950</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cores Douradas -->
+            <div class="mb-10">
+                <h3 class="text-lg font-medium text-gray-100 mb-4">Cores Douradas (Vibrantes)</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="rounded-xl overflow-hidden border border-white/10">
+                        <div class="h-24 bg-amber-300"></div>
+                        <div class="bg-gray-800/50 p-4">
+                            <p class="font-medium text-white">Dourado Hover</p>
+                            <p class="text-sm text-gray-400 font-mono">#FCD34D (amber-300)</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl overflow-hidden border border-white/10">
+                        <div class="h-24 bg-amber-400"></div>
+                        <div class="bg-gray-800/50 p-4">
+                            <p class="font-medium text-white">Dourado Brilhante</p>
+                            <p class="text-sm text-gray-400 font-mono">#FBBF24 (amber-400)</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl overflow-hidden border border-white/10">
+                        <div class="h-24 bg-amber-500"></div>
+                        <div class="bg-gray-800/50 p-4">
+                            <p class="font-medium text-white">Dourado Suave</p>
+                            <p class="text-sm text-gray-400 font-mono">#F59E0B (amber-500)</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl overflow-hidden border border-white/10">
+                        <div class="h-24 bg-amber-600"></div>
+                        <div class="bg-gray-800/50 p-4">
+                            <p class="font-medium text-white">Dourado Texto</p>
+                            <p class="text-sm text-gray-400 font-mono">#D97706 (amber-600)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cores de Estado -->
+            <div>
+                <h3 class="text-lg font-medium text-gray-100 mb-4">Cores de Estado</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="rounded-xl overflow-hidden border border-white/10">
+                        <div class="h-20 bg-green-500"></div>
+                        <div class="bg-gray-800/50 p-4">
+                            <p class="font-medium text-white">Sucesso</p>
+                            <p class="text-sm text-gray-400 font-mono">#22C55E</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl overflow-hidden border border-white/10">
+                        <div class="h-20 bg-yellow-500"></div>
+                        <div class="bg-gray-800/50 p-4">
+                            <p class="font-medium text-white">Alerta</p>
+                            <p class="text-sm text-gray-400 font-mono">#EAB308</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl overflow-hidden border border-white/10">
+                        <div class="h-20 bg-red-500"></div>
+                        <div class="bg-gray-800/50 p-4">
+                            <p class="font-medium text-white">Erro</p>
+                            <p class="text-sm text-gray-400 font-mono">#EF4444</p>
+                        </div>
+                    </div>
+                    <div class="rounded-xl overflow-hidden border border-white/10">
+                        <div class="h-20 bg-blue-500"></div>
+                        <div class="bg-gray-800/50 p-4">
+                            <p class="font-medium text-white">Info</p>
+                            <p class="text-sm text-gray-400 font-mono">#3B82F6</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Tipografia -->
+        <section>
+            <h2 class="font-heading text-2xl font-semibold text-white mb-8 flex items-center gap-3">
+                <span class="text-amber-400">🔤</span> Tipografia
+            </h2>
+            
+            <div class="grid gap-6">
+                <div class="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-sm text-amber-400 font-medium">Playfair Display</span>
+                        <span class="text-xs text-gray-500">Logo / Títulos</span>
+                    </div>
+                    <p class="font-display text-4xl text-white">Primor Garçons</p>
+                    <p class="font-display text-2xl text-gray-300 mt-2">Elegância em cada detalhe</p>
+                </div>
+                
+                <div class="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-sm text-amber-400 font-medium">Montserrat</span>
+                        <span class="text-xs text-gray-500">Subtítulos / Navegação</span>
+                    </div>
+                    <p class="font-heading text-2xl font-semibold text-white">Gerencie suas escalas</p>
+                    <p class="font-heading text-lg text-gray-300 mt-2">Dashboard • Garçons • Eventos • Relatórios</p>
+                </div>
+                
+                <div class="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-sm text-amber-400 font-medium">Inter</span>
+                        <span class="text-xs text-gray-500">Corpo de texto</span>
+                    </div>
+                    <p class="font-body text-base text-white">Sistema completo para gerenciamento de garçons em eventos.</p>
+                    <p class="font-body text-sm text-gray-400 mt-2">Cadastre profissionais, monte escalas e envie notificações via WhatsApp de forma simples e eficiente.</p>
+                </div>
+                
+                <div class="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                    <div class="flex items-center justify-between mb-4">
+                        <span class="text-sm text-amber-400 font-medium">JetBrains Mono</span>
+                        <span class="text-xs text-gray-500">Dados / Código</span>
+                    </div>
+                    <p class="font-mono text-base text-white">R$ 250,00 • ID: EVT-2026-0142</p>
+                    <p class="font-mono text-sm text-gray-400 mt-2">bg-gradient-to-b from-gray-900 to-gray-950</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Componentes -->
+        <section>
+            <h2 class="font-heading text-2xl font-semibold text-white mb-8 flex items-center gap-3">
+                <span class="text-amber-400">🧩</span> Componentes
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                
+                <!-- Botões -->
+                <div class="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                    <h3 class="text-lg font-medium text-gray-100 mb-6">Botões</h3>
+                    <div class="space-y-4">
+                        <button class="w-full rounded-md bg-amber-400 px-4 py-2.5 text-sm font-semibold text-gray-900 hover:bg-amber-300 focus:outline-2 focus:outline-offset-2 focus:outline-amber-400 transition-colors">
+                            Botão Primário (Dourado)
+                        </button>
+                        <button class="w-full rounded-md bg-white/10 px-4 py-2.5 text-sm font-semibold text-white border border-white/20 hover:bg-white/20 transition-colors">
+                            Botão Secundário (Glass)
+                        </button>
+                        <button class="w-full rounded-md bg-transparent px-4 py-2.5 text-sm font-semibold text-amber-400 hover:text-amber-300 transition-colors">
+                            Botão Link
+                        </button>
+                        <div class="flex gap-3">
+                            <button class="flex-1 rounded-md bg-green-500/20 px-4 py-2.5 text-sm font-semibold text-green-400 border border-green-500/30 hover:bg-green-500/30 transition-colors">
+                                Confirmar
+                            </button>
+                            <button class="flex-1 rounded-md bg-red-500/20 px-4 py-2.5 text-sm font-semibold text-red-400 border border-red-500/30 hover:bg-red-500/30 transition-colors">
+                                Cancelar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Inputs -->
+                <div class="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                    <h3 class="text-lg font-medium text-gray-100 mb-6">Inputs</h3>
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-100 mb-2">Email</label>
+                            <input type="email" placeholder="seu@email.com" class="block w-full rounded-md bg-white/5 px-3 py-2.5 text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-amber-400">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-100 mb-2">Senha</label>
+                            <input type="password" placeholder="••••••••" class="block w-full rounded-md bg-white/5 px-3 py-2.5 text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-amber-400">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-100 mb-2">Descrição</label>
+                            <textarea rows="3" placeholder="Digite aqui..." class="block w-full rounded-md bg-white/5 px-3 py-2.5 text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-amber-400 resize-none"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Badges -->
+                <div class="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                    <h3 class="text-lg font-medium text-gray-100 mb-6">Badges de Status</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-yellow-500/20 text-yellow-400 border border-yellow-500/30">
+                            <span class="w-1.5 h-1.5 rounded-full bg-yellow-400"></span>
+                            Pendente
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-green-500/20 text-green-400 border border-green-500/30">
+                            <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+                            Confirmado
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-red-500/20 text-red-400 border border-red-500/30">
+                            <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span>
+                            Recusado
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                            <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+                            Notificado
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+                            Maitre
+                        </span>
+                    </div>
+                </div>
+                
+                <!-- Cards -->
+                <div class="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                    <h3 class="text-lg font-medium text-gray-100 mb-6">Cards</h3>
+                    <div class="space-y-4">
+                        <div class="bg-gray-900/50 border border-white/5 rounded-lg p-4 hover:border-amber-500/30 transition-colors cursor-pointer">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-medium">JC</div>
+                                    <div>
+                                        <p class="text-white font-medium">João Carlos</p>
+                                        <p class="text-sm text-gray-400">Garçom • 5 eventos</p>
+                                    </div>
+                                </div>
+                                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium bg-green-500/20 text-green-400">
+                                    Ativo
+                                </span>
+                            </div>
+                        </div>
+                        <div class="bg-gray-900/50 border border-white/5 rounded-lg p-4 hover:border-amber-500/30 transition-colors cursor-pointer">
+                            <div class="flex items-center justify-between">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-medium">MS</div>
+                                    <div>
+                                        <p class="text-white font-medium">Maria Silva</p>
+                                        <p class="text-sm text-gray-400">Maitre • 12 eventos</p>
+                                    </div>
+                                </div>
+                                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium bg-amber-500/20 text-amber-400">
+                                    Maitre
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Exemplo de Tela de Login -->
+        <section>
+            <h2 class="font-heading text-2xl font-semibold text-white mb-8 flex items-center gap-3">
+                <span class="text-amber-400">🔐</span> Exemplo: Tela de Login
+            </h2>
+            
+            <div class="bg-gradient-to-b from-gray-900 to-gray-950 rounded-2xl border border-white/10 p-8 md:p-12">
+                <div class="max-w-sm mx-auto">
+                    <div class="text-center mb-10">
+                        <div class="w-16 h-16 mx-auto bg-gradient-to-br from-amber-300 to-amber-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-amber-500/20">
+                            <span class="font-display font-bold text-gray-900 text-3xl">P</span>
+                        </div>
+                        <h2 class="font-display text-2xl text-white">Primor Garçons</h2>
+                        <p class="text-gray-400 mt-2">Acesse sua conta</p>
+                    </div>
+                    
+                    <form class="space-y-5">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-100 mb-2">Email</label>
+                            <input type="email" placeholder="admin@primor.com" class="block w-full rounded-md bg-white/5 px-3 py-2.5 text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-amber-400">
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-2">
+                                <label class="block text-sm font-medium text-gray-100">Senha</label>
+                                <a href="#" class="text-sm text-amber-400 hover:text-amber-300">Esqueceu?</a>
+                            </div>
+                            <input type="password" placeholder="••••••••" class="block w-full rounded-md bg-white/5 px-3 py-2.5 text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-amber-400">
+                        </div>
+                        <button type="submit" class="w-full rounded-md bg-amber-400 px-4 py-2.5 text-sm font-semibold text-gray-900 hover:bg-amber-300 focus:outline-2 focus:outline-offset-2 focus:outline-amber-400 transition-colors mt-2">
+                            Entrar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Card de Evento -->
+        <section>
+            <h2 class="font-heading text-2xl font-semibold text-white mb-8 flex items-center gap-3">
+                <span class="text-amber-400">📅</span> Exemplo: Card de Evento
+            </h2>
+            
+            <div class="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden">
+                <div class="p-6 border-b border-white/10">
+                    <div class="flex items-start justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 mb-2">
+                                <h3 class="font-heading text-xl font-semibold text-white">Casamento Silva & Costa</h3>
+                                <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                                    Notificado
+                                </span>
+                            </div>
+                            <p class="text-gray-400">Casamento • Buffet Estrela do Mar</p>
+                        </div>
+                        <button class="rounded-md bg-amber-400 px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-amber-300 transition-colors">
+                            Enviar Notificações
+                        </button>
+                    </div>
+                    
+                    <div class="flex flex-wrap gap-6 mt-6 text-sm">
+                        <div class="flex items-center gap-2 text-gray-300">
+                            <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                            15/02/2026
+                        </div>
+                        <div class="flex items-center gap-2 text-gray-300">
+                            <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            18:00 - 00:00
+                        </div>
+                        <div class="flex items-center gap-2 text-gray-300">
+                            <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            8 garçons
+                        </div>
+                        <div class="flex items-center gap-2 text-gray-300">
+                            <svg class="w-4 h-4 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                            </svg>
+                            R$ 2.100,00
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="p-6">
+                    <h4 class="text-sm font-medium text-gray-400 mb-4">Escala de Garçons</h4>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-sm">
+                            <thead>
+                                <tr class="border-b border-white/10">
+                                    <th class="text-left py-3 px-4 text-gray-400 font-medium">Nome</th>
+                                    <th class="text-left py-3 px-4 text-gray-400 font-medium">Função</th>
+                                    <th class="text-left py-3 px-4 text-gray-400 font-medium">Valor</th>
+                                    <th class="text-left py-3 px-4 text-gray-400 font-medium">Status</th>
+                                    <th class="text-right py-3 px-4 text-gray-400 font-medium">Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-white/5">
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="py-3 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 text-xs font-medium">MS</div>
+                                            <span class="text-white">Maria Silva</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-amber-500/20 text-amber-400">Maitre</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-white font-mono">R$ 350,00</td>
+                                    <td class="py-3 px-4">
+                                        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium bg-green-500/20 text-green-400">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+                                            Confirmado
+                                        </span>
+                                    </td>
+                                    <td class="py-3 px-4 text-right">
+                                        <button class="text-gray-400 hover:text-amber-400 transition-colors">Reenviar</button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="py-3 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 text-xs font-medium">JC</div>
+                                            <span class="text-white">João Carlos</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-gray-500/20 text-gray-400">Garçom</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-white font-mono">R$ 250,00</td>
+                                    <td class="py-3 px-4">
+                                        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium bg-green-500/20 text-green-400">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-green-400"></span>
+                                            Confirmado
+                                        </span>
+                                    </td>
+                                    <td class="py-3 px-4 text-right">
+                                        <button class="text-gray-400 hover:text-amber-400 transition-colors">Reenviar</button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="py-3 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 text-xs font-medium">PS</div>
+                                            <span class="text-white">Pedro Santos</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-gray-500/20 text-gray-400">Garçom</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-white font-mono">R$ 250,00</td>
+                                    <td class="py-3 px-4">
+                                        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium bg-yellow-500/20 text-yellow-400">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-yellow-400"></span>
+                                            Pendente
+                                        </span>
+                                    </td>
+                                    <td class="py-3 px-4 text-right">
+                                        <button class="text-gray-400 hover:text-amber-400 transition-colors">Reenviar</button>
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-white/5 transition-colors">
+                                    <td class="py-3 px-4">
+                                        <div class="flex items-center gap-3">
+                                            <div class="w-8 h-8 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 text-xs font-medium">AL</div>
+                                            <span class="text-white">Ana Lima</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-3 px-4">
+                                        <span class="inline-flex px-2 py-0.5 rounded text-xs font-medium bg-gray-500/20 text-gray-400">Garçom</span>
+                                    </td>
+                                    <td class="py-3 px-4 text-white font-mono">R$ 250,00</td>
+                                    <td class="py-3 px-4">
+                                        <span class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium bg-red-500/20 text-red-400">
+                                            <span class="w-1.5 h-1.5 rounded-full bg-red-400"></span>
+                                            Recusado
+                                        </span>
+                                    </td>
+                                    <td class="py-3 px-4 text-right">
+                                        <button class="text-gray-400 hover:text-amber-400 transition-colors">Reenviar</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção: Sidebar Navigation -->
+        <section>
+            <h2 class="font-heading text-2xl font-semibold text-white mb-8 flex items-center gap-3">
+                <span class="text-amber-400">📋</span> Exemplo: Navegação Lateral
+            </h2>
+            
+            <div class="flex gap-6">
+                <div class="w-64 bg-gray-900 border border-white/10 rounded-xl p-4">
+                    <div class="flex items-center gap-3 mb-8 p-2">
+                        <div class="w-10 h-10 bg-gradient-to-br from-amber-300 to-amber-500 rounded-lg flex items-center justify-center">
+                            <span class="font-display font-bold text-gray-900 text-xl">P</span>
+                        </div>
+                        <div>
+                            <h1 class="font-display text-lg text-white">Primor</h1>
+                            <span class="text-xs text-gray-500 tracking-wider uppercase">Garçons</span>
+                        </div>
+                    </div>
+                    
+                    <nav class="space-y-1">
+                        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg bg-amber-500/10 text-amber-400 border-l-2 border-amber-400">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"/>
+                            </svg>
+                            Dashboard
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-white/5 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"/>
+                            </svg>
+                            Garçons
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-white/5 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+                            </svg>
+                            Eventos
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-white/5 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+                            </svg>
+                            Relatórios
+                        </a>
+                        <a href="#" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-400 hover:bg-white/5 hover:text-white transition-colors">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            </svg>
+                            Configurações
+                        </a>
+                    </nav>
+                </div>
+                
+                <div class="flex-1 bg-gray-800/30 border border-white/10 rounded-xl p-6 flex items-center justify-center">
+                    <p class="text-gray-500">Área de conteúdo principal</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 mt-16">
+        <div class="max-w-7xl mx-auto px-6 py-8 text-center">
+            <p class="text-gray-500 text-sm">Primor Garçons • Identidade Visual • Janeiro 2026</p>
+        </div>
+    </footer>
+
+</body>
+</html>

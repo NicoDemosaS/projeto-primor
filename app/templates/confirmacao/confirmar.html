@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar Presença - {{ evento.nome }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .font-display { font-family: 'Playfair Display', serif; }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-gray-900 to-gray-950 flex items-center justify-center p-4">
+    <div class="w-full max-w-md">
+        <!-- Logo -->
+        <div class="text-center mb-8">
+            <h1 class="font-display text-3xl font-bold text-amber-400">Primor Garçons</h1>
+        </div>
+        
+        <!-- Card -->
+        <div class="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-8">
+            <div class="text-center mb-6">
+                <h2 class="text-xl font-semibold text-white mb-2">Confirmação de Presença</h2>
+                <p class="text-gray-400">Olá, <span class="text-amber-400 font-medium">{{ garcom.nome }}</span></p>
+            </div>
+            
+            <!-- Detalhes do Evento -->
+            <div class="bg-white/5 rounded-lg p-4 mb-6">
+                <h3 class="text-lg font-semibold text-white mb-3">{{ evento.nome }}</h3>
+                <div class="space-y-2 text-sm">
+                    <div class="flex items-center gap-3">
+                        <span class="text-amber-400">📅</span>
+                        <span class="text-gray-300">{{ evento.data.strftime('%d/%m/%Y') }} às {{ evento.horario }}</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="text-amber-400">📍</span>
+                        <span class="text-gray-300">{{ evento.local }}</span>
+                    </div>
+                    {% if escala.valor > 0 %}
+                    <div class="flex items-center gap-3">
+                        <span class="text-amber-400">💰</span>
+                        <span class="text-gray-300">R$ {{ '%.2f'|format(escala.valor) }}</span>
+                    </div>
+                    {% endif %}
+                    {% if evento.descricao %}
+                    <div class="flex items-start gap-3">
+                        <span class="text-amber-400">📝</span>
+                        <span class="text-gray-300">{{ evento.descricao }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Pergunta -->
+            <p class="text-center text-gray-300 mb-6">Você confirma sua presença neste evento?</p>
+            
+            <!-- Botões -->
+            <form method="POST" class="space-y-3">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                
+                <button type="submit" name="resposta" value="confirmado"
+                        class="w-full rounded-lg bg-green-500 hover:bg-green-400 px-4 py-3 text-sm font-semibold text-white transition-colors">
+                    ✓ Confirmar Presença
+                </button>
+                
+                <button type="submit" name="resposta" value="recusado"
+                        class="w-full rounded-lg bg-white/10 hover:bg-white/20 border border-white/20 px-4 py-3 text-sm font-semibold text-white transition-colors">
+                    ✕ Não Posso Comparecer
+                </button>
+            </form>
+        </div>
+        
+        <!-- Footer -->
+        <p class="text-center text-gray-600 text-sm mt-8">
+            © {{ now.year }} Primor Garçons. Todos os direitos reservados.
+        </p>
+    </div>
+</body>
+</html>

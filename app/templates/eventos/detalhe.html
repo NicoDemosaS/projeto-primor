@@ -1,0 +1,312 @@
+{% extends "base.html" %}
+
+{% block title %}{{ evento.nome }} - Primor Garçons{% endblock %}
+
+{% block content %}
+<div class="p-8">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-8">
+        <div class="flex items-center gap-4">
+            <a href="{{ url_for('eventos.index') }}" class="text-gray-400 hover:text-white transition-colors">
+                ← Voltar
+            </a>
+            <div>
+                <h1 class="text-2xl font-semibold text-white">{{ evento.nome }}</h1>
+                <p class="text-gray-400">{{ evento.tipo }}</p>
+            </div>
+        </div>
+        <div class="flex items-center gap-2">
+            <a href="{{ url_for('eventos.editar', id=evento.id) }}" 
+               class="rounded-md bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20 transition-colors">
+                Editar
+            </a>
+            <form method="POST" action="{{ url_for('eventos.excluir', id=evento.id) }}" onsubmit="return confirm('Tem certeza?')">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit" 
+                        class="rounded-md bg-red-500/20 border border-red-500/50 px-4 py-2 text-sm font-semibold text-red-400 hover:bg-red-500/30 transition-colors">
+                    Excluir
+                </button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="grid grid-cols-3 gap-6">
+        <!-- Info do Evento -->
+        <div class="col-span-2 space-y-6">
+            <!-- Card Informações -->
+            <div class="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                <h2 class="text-lg font-semibold text-white mb-4">Informações do Evento</h2>
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <p class="text-sm text-gray-400">Data</p>
+                        <p class="text-white font-medium">{{ evento.data.strftime('%d/%m/%Y') }}</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-400">Horário</p>
+                        <p class="text-white font-medium">{{ evento.horario }}</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-400">Local</p>
+                        <p class="text-white font-medium">{{ evento.local }}</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-400">Valor Total</p>
+                        <p class="text-white font-medium">R$ {{ '%.2f'|format(evento.valor_total) }}</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-400">Valor por Garçom</p>
+                        <p class="text-white font-medium">R$ {{ '%.2f'|format(evento.valor_padrao|float) }}</p>
+                    </div>
+                    <div>
+                        <p class="text-sm text-gray-400">Adicional Motorista</p>
+                        <p class="text-white font-medium">R$ {{ '%.2f'|format(evento.valor_motorista|float) }}</p>
+                    </div>
+                    <div class="col-span-2">
+                        <p class="text-sm text-gray-400">Status</p>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium {{ evento.status_badge[0] }} border">
+                            {{ evento.status_badge[1] }}
+                        </span>
+                    </div>
+                </div>
+                {% if evento.descricao %}
+                <div class="mt-6 pt-6 border-t border-white/10">
+                    <p class="text-sm text-gray-400 mb-2">Descrição</p>
+                    <p class="text-white">{{ evento.descricao }}</p>
+                </div>
+                {% endif %}
+            </div>
+            
+            <!-- Card Garçons -->
+            <div class="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-semibold text-white">Garçons Escalados ({{ evento.escalas|list|length }})</h2>
+                    <button type="button" onclick="openModal()" 
+                            class="rounded-md bg-amber-400 px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-amber-300 transition-colors">
+                        + Adicionar Garçom
+                    </button>
+                </div>
+                
+                {% if evento.escalas %}
+                <div class="divide-y divide-white/5">
+                    {% for escala in evento.escalas %}
+                    <div class="py-4">
+                        <div class="flex items-center justify-between mb-2">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-medium">
+                                    {{ escala.garcom.nome[0] }}
+                                </div>
+                                <div>
+                                    <p class="text-white font-medium">
+                                        {{ escala.garcom.nome }}
+                                        {% if escala.is_motorista %}
+                                        <span class="ml-2 inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                                            🚗 Motorista
+                                        </span>
+                                        {% endif %}
+                                    </p>
+                                    <p class="text-sm text-gray-400">{{ escala.garcom.telefone }}</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-4">
+                                <span class="text-amber-400 font-medium">
+                                    R$ {{ '%.2f'|format(escala.valor|float + (evento.valor_motorista|float if escala.is_motorista else 0)) }}
+                                </span>
+                                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium
+                                             {% if escala.status == 'confirmado' %}bg-green-500/20 text-green-400 border-green-500/50
+                                             {% elif escala.status == 'recusado' %}bg-red-500/20 text-red-400 border-red-500/50
+                                             {% else %}bg-yellow-500/20 text-yellow-400 border-yellow-500/50{% endif %} border">
+                                    {% if escala.status == 'confirmado' %}Confirmado
+                                    {% elif escala.status == 'recusado' %}Recusado
+                                    {% else %}Pendente{% endif %}
+                                </span>
+                                <button type="button" onclick="openEditModal({{ escala.id }}, '{{ escala.garcom.nome }}', {{ escala.valor|float }}, {{ 'true' if escala.is_motorista else 'false' }})" 
+                                        class="text-gray-400 hover:text-amber-400 transition-colors" title="Editar">
+                                    ✏️
+                                </button>
+                                <form method="POST" action="{{ url_for('eventos.remover_garcom', id=evento.id, garcom_id=escala.garcom_id) }}">
+                                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                    <button type="submit" class="text-gray-500 hover:text-red-400 transition-colors" title="Remover">
+                                        ✕
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-gray-500 py-4">Nenhum garçom escalado ainda.</p>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Sidebar Ações -->
+        <div class="space-y-6">
+            <!-- Status -->
+            <div class="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                <h2 class="text-lg font-semibold text-white mb-4">Status do Evento</h2>
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-400">Confirmados</span>
+                        <span class="text-green-400 font-medium">{{ evento.total_confirmados }}</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-400">Pendentes</span>
+                        <span class="text-yellow-400 font-medium">{{ evento.total_pendentes }}</span>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <span class="text-gray-400">Recusados</span>
+                        <span class="text-red-400 font-medium">{{ evento.total_recusados }}</span>
+                    </div>
+                    <div class="border-t border-white/10 pt-4 flex items-center justify-between">
+                        <span class="text-gray-300 font-medium">Total</span>
+                        <span class="text-white font-bold">{{ evento.total_garcons }}</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ações -->
+            <div class="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-6">
+                <h2 class="text-lg font-semibold text-white mb-4">Ações</h2>
+                <div class="space-y-3">
+                    <form method="POST" action="{{ url_for('eventos.notificar', id=evento.id) }}">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <button type="submit" 
+                                class="w-full rounded-md bg-green-500/20 border border-green-500/50 px-4 py-3 text-sm font-semibold text-green-400 hover:bg-green-500/30 transition-colors flex items-center justify-center gap-2">
+                            📱 Enviar WhatsApp
+                        </button>
+                    </form>
+                    
+                    <a href="{{ url_for('relatorios.evento_pdf', id=evento.id) }}" 
+                       class="w-full rounded-md bg-blue-500/20 border border-blue-500/50 px-4 py-3 text-sm font-semibold text-blue-400 hover:bg-blue-500/30 transition-colors flex items-center justify-center gap-2">
+                        📄 Exportar PDF
+                    </a>
+                    
+                    <form method="POST" action="{{ url_for('eventos.marcar_realizado', id=evento.id) }}">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="status" value="realizado">
+                        <button type="submit" 
+                                class="w-full rounded-md bg-amber-500/20 border border-amber-500/50 px-4 py-3 text-sm font-semibold text-amber-400 hover:bg-amber-500/30 transition-colors">
+                            ✓ Marcar como Realizado
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Adicionar Garçom -->
+<div id="modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50" onclick="closeModal(event)">
+    <div class="bg-gray-800 border border-white/10 rounded-xl p-6 w-full max-w-lg mx-4" onclick="event.stopPropagation()">
+        <h3 class="text-lg font-semibold text-white mb-4">Adicionar Garçom ao Evento</h3>
+        <form method="POST" action="{{ url_for('eventos.adicionar_garcom', id=evento.id) }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="space-y-4 max-h-80 overflow-y-auto">
+                {% for garcom in garcons_disponiveis %}
+                {% set conflito = conflitos.get(garcom.id) %}
+                <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 cursor-pointer">
+                    <input type="checkbox" name="garcons" value="{{ garcom.id }}" 
+                           class="rounded border-gray-600 bg-white/5 text-amber-400 focus:ring-amber-400 focus:ring-offset-0"
+                           {% if conflito %}disabled{% endif %}>
+                    <div class="flex-1">
+                        <div class="flex items-center justify-between">
+                            <p class="text-white font-medium">{{ garcom.nome }}</p>
+                            {% if conflito %}
+                            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-red-500/20 text-red-400 border border-red-500/30">
+                                CONFLITO
+                            </span>
+                            {% endif %}
+                        </div>
+                        <p class="text-sm text-gray-400">{{ garcom.telefone }}</p>
+                        {% if conflito %}
+                        <p class="text-xs text-red-400 mt-1">Conflito com: {{ conflito|join(', ') }}</p>
+                        {% endif %}
+                    </div>
+                </label>
+                {% else %}
+                <p class="text-gray-500 py-4">Todos os garçons ativos já estão escalados.</p>
+                {% endfor %}
+            </div>
+            <div class="flex justify-end gap-3 mt-6 pt-4 border-t border-white/10">
+                <button type="button" onclick="closeModal(event)" 
+                        class="rounded-md bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20 transition-colors">
+                    Cancelar
+                </button>
+                <button type="submit" 
+                        class="rounded-md bg-amber-400 px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-amber-300 transition-colors">
+                    Adicionar Selecionados
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Modal Editar Escala -->
+<div id="editModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50" onclick="closeEditModal(event)">
+    <div class="bg-gray-800 border border-white/10 rounded-xl p-6 w-full max-w-md mx-4" onclick="event.stopPropagation()">
+        <h3 class="text-lg font-semibold text-white mb-4">Editar Escala - <span id="editNomeGarcom"></span></h3>
+        <form id="editForm" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <div class="space-y-4">
+                <div>
+                    <label for="editValor" class="block text-sm font-medium text-gray-300 mb-2">Valor (R$)</label>
+                    <input type="number" id="editValor" name="valor" step="0.01" min="0"
+                           class="w-full rounded-md bg-white/5 px-3 py-2 text-white outline-1 -outline-offset-1 outline-white/10 focus:outline-2 focus:-outline-offset-2 focus:outline-amber-400">
+                    <p class="text-xs text-gray-500 mt-1">Valor base: R$ {{ '%.2f'|format(evento.valor_padrao|float) }}</p>
+                </div>
+                <div>
+                    <label class="flex items-center gap-3 p-3 rounded-lg hover:bg-white/5 cursor-pointer">
+                        <input type="checkbox" id="editMotorista" name="is_motorista"
+                               class="rounded border-gray-600 bg-white/5 text-amber-400 focus:ring-amber-400 focus:ring-offset-0">
+                        <div>
+                            <p class="text-white font-medium">🚗 É motorista</p>
+                            <p class="text-sm text-gray-400">Adicional de R$ {{ '%.2f'|format(evento.valor_motorista|float) }}</p>
+                        </div>
+                    </label>
+                </div>
+            </div>
+            <div class="flex justify-end gap-3 mt-6 pt-4 border-t border-white/10">
+                <button type="button" onclick="closeEditModal(event)" 
+                        class="rounded-md bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20 transition-colors">
+                    Cancelar
+                </button>
+                <button type="submit" 
+                        class="rounded-md bg-amber-400 px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-amber-300 transition-colors">
+                    Salvar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openModal() {
+        document.getElementById('modal').classList.remove('hidden');
+        document.getElementById('modal').classList.add('flex');
+    }
+    
+    function closeModal(e) {
+        if (e.target.id === 'modal' || e.type === 'click') {
+            document.getElementById('modal').classList.add('hidden');
+            document.getElementById('modal').classList.remove('flex');
+        }
+    }
+    
+    function openEditModal(escalaId, nomeGarcom, valor, isMotorista) {
+        document.getElementById('editNomeGarcom').textContent = nomeGarcom;
+        document.getElementById('editValor').value = valor.toFixed(2);
+        document.getElementById('editMotorista').checked = isMotorista;
+        document.getElementById('editForm').action = '/eventos/{{ evento.id }}/atualizar-escala/' + escalaId;
+        document.getElementById('editModal').classList.remove('hidden');
+        document.getElementById('editModal').classList.add('flex');
+    }
+    
+    function closeEditModal(e) {
+        if (e.target.id === 'editModal' || e.type === 'click') {
+            document.getElementById('editModal').classList.add('hidden');
+            document.getElementById('editModal').classList.remove('flex');
+        }
+    }
+</script>
+{% endblock %}

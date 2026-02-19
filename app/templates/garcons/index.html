@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Garçons - Primor Garçons{% endblock %}
+
+{% block content %}
+<div class="p-8">
+    <!-- Header -->
+    <div class="flex items-center justify-between mb-8">
+        <h1 class="text-2xl font-semibold text-white">Garçons</h1>
+        <a href="{{ url_for('garcons.novo') }}" 
+           class="rounded-md bg-amber-400 px-4 py-2 text-sm font-semibold text-gray-900 hover:bg-amber-300 transition-colors">
+            + Novo Garçom
+        </a>
+    </div>
+    
+    <!-- Filtros -->
+    <div class="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl p-4 mb-6">
+        <form method="GET" class="flex flex-wrap items-center gap-4">
+            <div class="flex gap-2">
+                <a href="{{ url_for('garcons.index', filtro='ativos', busca=busca) }}" 
+                   class="px-4 py-2 rounded-lg text-sm font-medium transition-colors
+                          {% if filtro == 'ativos' %}bg-amber-400 text-gray-900{% else %}bg-white/10 text-white hover:bg-white/20{% endif %}">
+                    Ativos
+                </a>
+                <a href="{{ url_for('garcons.index', filtro='inativos', busca=busca) }}" 
+                   class="px-4 py-2 rounded-lg text-sm font-medium transition-colors
+                          {% if filtro == 'inativos' %}bg-amber-400 text-gray-900{% else %}bg-white/10 text-white hover:bg-white/20{% endif %}">
+                    Inativos
+                </a>
+                <a href="{{ url_for('garcons.index', filtro='todos', busca=busca) }}" 
+                   class="px-4 py-2 rounded-lg text-sm font-medium transition-colors
+                          {% if filtro == 'todos' %}bg-amber-400 text-gray-900{% else %}bg-white/10 text-white hover:bg-white/20{% endif %}">
+                    Todos
+                </a>
+            </div>
+            
+            <div class="flex-1">
+                <input type="text" name="busca" value="{{ busca }}" placeholder="Buscar por nome..."
+                       class="w-full max-w-xs rounded-md bg-white/5 px-3 py-2 text-white outline-1 -outline-offset-1 outline-white/10 placeholder:text-gray-500 focus:outline-2 focus:-outline-offset-2 focus:outline-amber-400">
+            </div>
+            
+            <input type="hidden" name="filtro" value="{{ filtro }}">
+            <button type="submit" class="px-4 py-2 rounded-lg bg-white/10 text-white hover:bg-white/20 transition-colors">
+                Buscar
+            </button>
+        </form>
+    </div>
+    
+    <!-- Lista de Garçons -->
+    <div class="bg-gray-800/50 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden">
+        {% if garcons %}
+        <table class="w-full text-sm">
+            <thead>
+                <tr class="border-b border-white/10">
+                    <th class="text-left py-4 px-6 text-gray-400 font-medium">Nome</th>
+                    <th class="text-left py-4 px-6 text-gray-400 font-medium">Contato</th>
+                    <th class="text-left py-4 px-6 text-gray-400 font-medium">Idade</th>
+                    <th class="text-left py-4 px-6 text-gray-400 font-medium">Eventos</th>
+                    <th class="text-left py-4 px-6 text-gray-400 font-medium">Status</th>
+                    <th class="text-right py-4 px-6 text-gray-400 font-medium">Ações</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5">
+                {% for garcom in garcons %}
+                <tr class="hover:bg-white/5 transition-colors">
+                    <td class="py-4 px-6">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 rounded-full bg-amber-500/20 flex items-center justify-center text-amber-400 font-medium">
+                                {{ garcom.iniciais }}
+                            </div>
+                            <div>
+                                <p class="text-white font-medium">{{ garcom.nome }}</p>
+                                {% if garcom.pix %}
+                                <p class="text-xs text-gray-500">PIX: {{ garcom.pix[:20] }}...</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </td>
+                    <td class="py-4 px-6">
+                        <p class="text-white">{{ garcom.telefone }}</p>
+                        <p class="text-xs text-gray-400">{{ garcom.email }}</p>
+                    </td>
+                    <td class="py-4 px-6 text-white">{{ garcom.idade }} anos</td>
+                    <td class="py-4 px-6 text-white">{{ garcom.total_eventos }}</td>
+                    <td class="py-4 px-6">
+                        <form action="{{ url_for('garcons.toggle_ativo', id=garcom.id) }}" method="POST" class="inline">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                            <button type="submit" 
+                                    class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-medium cursor-pointer
+                                           {% if garcom.ativo %}bg-green-500/20 text-green-400{% else %}bg-gray-500/20 text-gray-400{% endif %}">
+                                <span class="w-1.5 h-1.5 rounded-full {% if garcom.ativo %}bg-green-400{% else %}bg-gray-400{% endif %}"></span>
+                                {{ 'Ativo' if garcom.ativo else 'Inativo' }}
+                            </button>
+                        </form>
+                    </td>
+                    <td class="py-4 px-6 text-right">
+                        <div class="flex items-center justify-end gap-2">
+                            <a href="{{ url_for('garcons.editar', id=garcom.id) }}" 
+                               class="text-gray-400 hover:text-amber-400 transition-colors">
+                                Editar
+                            </a>
+                            <form action="{{ url_for('garcons.excluir', id=garcom.id) }}" method="POST" class="inline"
+                                  onsubmit="return confirm('Tem certeza que deseja excluir este garçom?')">
+                                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                                <button type="submit" class="text-gray-400 hover:text-red-400 transition-colors">
+                                    Excluir
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="p-12 text-center text-gray-500">
+            <p>Nenhum garçom encontrado</p>
+            <a href="{{ url_for('garcons.novo') }}" class="text-amber-400 hover:text-amber-300 mt-2 inline-block">Cadastrar primeiro garçom</a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
