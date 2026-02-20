@@ -102,7 +102,8 @@ jobs:
             docker stop container-primor || true
             docker rm container-primor || true
 
-            # Mata qualquer processo usando a porta 5000
-            sudo fuser -k 5000/tcp || true
+            # Para qualquer container usando a porta 5000
+            docker ps -q --filter "publish=5000" | xargs -r docker stop
+            docker ps -aq --filter "publish=5000" | xargs -r docker rm
 
             docker run -d --name container-primor --env-file "$REPO_DIR/.env" -p 5000:5000 --restart unless-stopped app-primor
