@@ -20,8 +20,7 @@ weasyprint==60.1
 # HTTP requests (Evolution API)
 requests==2.31.0
 
-# Servidor WSGI
-gunicorn==21.2.0
+
 
 # Utilitários
 python-dateutil==2.8.2
