@@ -285,7 +285,7 @@
 | **Backend** | FLASK E PYTHON |
 | **Banco de Dados** | PostgreSQL / Supabase |
 | **Autenticação** | FLASK E PYTHON|
-| **WhatsApp** | Evolution API |
+| **WhatsApp** | Evolution API na vdd foi usado a API oficial do zap|
 | **PDF** | jsPDF ou React-PDF |
 | **Hospedagem** | Digitalocean para o MVP, hostingetor dps de aprovado |
 
