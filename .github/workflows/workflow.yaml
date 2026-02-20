@@ -76,9 +76,21 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/deployer/projeto-primor
+            set -e
+
+            REPO_DIR="/home/${{ secrets.SERVER_USER }}/projeto-primor"
+            REPO_URL="https://github.com/${{ github.repository }}.git"
+
+            # Se o repo não existe, clona. Se existe, atualiza.
+            if [ ! -d "$REPO_DIR" ]; then
+              git clone "$REPO_URL" "$REPO_DIR"
+            fi
+
+            cd "$REPO_DIR"
             git pull origin main
+
+            # Build e restart do container
             docker build -t app-primor .
             docker stop container-primor || true
             docker rm container-primor || true
-            docker run -d --name container-primor --env-file /home/deployer/projeto-primor/.env -p 5000:5000 app-primor
+            docker run -d --name container-primor --env-file "$REPO_DIR/.env" -p 5000:5000 app-primor
