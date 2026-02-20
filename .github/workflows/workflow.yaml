@@ -81,9 +81,17 @@ jobs:
             REPO_DIR="/home/${{ secrets.SERVER_USER }}/projeto-primor"
             REPO_URL="https://github.com/${{ github.repository }}.git"
 
-            # Se o repo não existe, clona. Se existe, atualiza.
-            if [ ! -d "$REPO_DIR" ]; then
+            # Se não é um repo git, clona. Se já é, só atualiza.
+            if [ ! -d "$REPO_DIR/.git" ]; then
+              # Salva o .env se existir, clona, e restaura
+              if [ -f "$REPO_DIR/.env" ]; then
+                cp "$REPO_DIR/.env" /tmp/.env.bkp
+              fi
+              rm -rf "$REPO_DIR"
               git clone "$REPO_URL" "$REPO_DIR"
+              if [ -f /tmp/.env.bkp ]; then
+                mv /tmp/.env.bkp "$REPO_DIR/.env"
+              fi
             fi
 
             cd "$REPO_DIR"
